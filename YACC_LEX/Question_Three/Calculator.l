@@ -9,6 +9,8 @@ int yywrap(void);
 
 %%
 [0-9]+ {yylval = atoi(yytext); return NUMBER; }
+"+" { return SUM; }
+"-" {return SUB; }
 \n    { return 0; }
 .     { return yytext[0]; }
 %%

@@ -4,18 +4,12 @@
     int yyerror(char *);
 %}
 
-%token NAME NUMBER
+%token  NUMBER 
+%left SUM SUB
 
 %%
-statement : NAME '=' expression
-          | expression { printf("=%d\n",$1);}
- ;
-expression:expression'+' NUMBER{$$ = $1+$3;}
- |expression '-' NUMBER {$$ = $1-$3;}
- |expression '*' NUMBER {$$ = $1*$3;}
- |expression '/' NUMBER { if ($3!=0){ $$ = $1/$3; }else { printf("Error: Division by Zero"); } }
- |NUMBER {$$=$1;}
- ;
+S : expression {printf("result = %d\n",$1);};
+expression: NUMBER {$$ = $1;} | expression SUM expression{$$ = $1 + $3;} | expression SUB expression {$$ = $1 - $3;};
 
 %%
 

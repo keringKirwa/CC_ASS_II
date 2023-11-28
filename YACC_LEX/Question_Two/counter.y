@@ -11,9 +11,7 @@ int yylval;
 
 %%
 
-S: A S 
- | B
-  ;
+S: A S | B ;
 
 %%
 
